@@ -5,8 +5,7 @@ database:
   replace-table: True
 
 new-data-paths:
-  - tree_data/data_files/s_wfs_baumbestand_apr22.geojson
-  - tree_data/data_files/s_wfs_baumbestand_an_apr22.geojson
+  - tree_data/data_files/baumkataster_muenster.geojson
 
 data-schema:
   mapping:
@@ -30,5 +29,3 @@ data-schema:
     - gattungdeutsch
     - gattung
     - pflanzjahr
-
-
