@@ -10,10 +10,6 @@ from datetime import datetime
 import logging
 from decimal import Decimal
 import locale
-from pyproj import Proj, transform
-
-inProj = Proj('epsg:25832')
-outProj = Proj('epsg:4326')
 
 locale.setlocale(locale.LC_NUMERIC, "de_DE")
 
@@ -78,14 +74,9 @@ with open(FILENAME + '.csv',  encoding='latin-1') as csvinput:
                 logging.error("DID not find point in '%s'", t_geo)
                 continue
 
-#          logging.debug("Geo %s ---> %s, %s", t_geo, Decimal(t_geo1), Decimal(t_geo2))
-            x2, y2 = transform(
-                inProj, outProj, Decimal(t_geo1), Decimal(t_geo2))
-            logging.debug("latlong %s,%s", x2, y2)
-
             feature = {
                 "type": "Feature",
-                "geometry": {"type": "Point", "coordinates": [y2, x2]},
+                "geometry": {"type": "Point", "coordinates": [float(t_geo1), float(t_geo2)]},
                 "properties": {
                     "gml_id": "muenster." + row[0],
                     "baumid": row[0],
