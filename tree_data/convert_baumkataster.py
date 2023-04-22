@@ -9,11 +9,13 @@ import csv
 from datetime import datetime
 import logging
 from decimal import Decimal
+import locale
 from pyproj import Proj, transform
 
 inProj = Proj('epsg:25832')
 outProj = Proj('epsg:4326')
 
+locale.setlocale(locale.LC_NUMERIC, "de_DE")
 
 # Basic logger configuration
 logging.basicConfig(level=logging.DEBUG,
@@ -85,23 +87,25 @@ with open(FILENAME + '.csv',  encoding='latin-1') as csvinput:
                 "type": "Feature",
                 "geometry": {"type": "Point", "coordinates": [y2, x2]},
                 "properties": {
-                    "gml_id": "muenster/" + row[0] + "/" + row[1],
+                    "gml_id": "muenster." + row[0],
                     "baumid": row[0],
                     "standortnr": row[1],
-                    "kennzeich": row[14] or None,
-                    "namenr": row[15] or None,
-                    "art_dtsch": row[9] or None,
-                    "art_bot": row[10] or None,
-                    "strname": row[12] or None,
-                    "hausnr": None,
-                    "pflanzjahr": row[7] or None,
-                    "standalter": row[8] or None,
-                    "stammumfg": row[5] or None,
-                    "baumhoehe": row[2] or None,
-                    "bezirk": row[13] or None,
-                    "eigentuemer": None,
-                    "zusatz": None,
-                    "kronedurch": row[6] or None
+                    "kennzeich": row[14],
+                    "namenr": row[15],
+                    "art_dtsch": row[9],
+                    "art_bot": row[10],
+                    "gattungdeutsch": "",
+                    "gattung": "",
+                    "strname": row[12],
+                    "hausnr": "",
+                    "pflanzjahr": int(row[7]) if (row[7]) else None,
+                    "standalter": int(row[8]) if (row[8]) else None,
+                    "stammumfg": locale.atof(row[5]) if (row[5]) else None,
+                    "baumhoehe": locale.atof(row[2]) if (row[2]) else None,
+                    "bezirk": row[13],
+                    "eigentuemer": "",
+                    "zusatz": "",
+                    "kronedurch": locale.atof(row[6]) if (row[6]) else None,
                 }
             }
             geojson["features"].append(feature)
