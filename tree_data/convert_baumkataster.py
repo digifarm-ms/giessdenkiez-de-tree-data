@@ -74,32 +74,33 @@ with open(FILENAME + '.csv',  encoding='latin-1') as csvinput:
                 logging.error("DID not find point in '%s'", t_geo)
                 continue
 
-            feature = {
-                "type": "Feature",
-                "geometry": {"type": "Point", "coordinates": [float(t_geo1), float(t_geo2)]},
-                "properties": {
-                    "gml_id": "muenster." + row[0],
-                    "baumid": row[0],
-                    "standortnr": row[1],
-                    "kennzeich": row[14],
-                    "namenr": row[15],
-                    "art_dtsch": row[9],
-                    "art_bot": row[10],
-                    "gattungdeutsch": "",
-                    "gattung": "",
-                    "strname": row[12],
-                    "hausnr": "",
-                    "pflanzjahr": int(row[7]) if (row[7]) else None,
-                    "standalter": int(row[8]) if (row[8]) else None,
-                    "stammumfg": locale.atof(row[5]) if (row[5]) else None,
-                    "baumhoehe": locale.atof(row[2]) if (row[2]) else None,
-                    "bezirk": row[13],
-                    "eigentuemer": "",
-                    "zusatz": "",
-                    "kronedurch": locale.atof(row[6]) if (row[6]) else None,
+            if (row[7]):
+                feature = {
+                    "type": "Feature",
+                    "geometry": {"type": "Point", "coordinates": [float(t_geo1), float(t_geo2)]},
+                    "properties": {
+                        "gml_id": "muenster." + row[0],
+                        "baumid": row[0],
+                        "standortnr": row[1],
+                        "kennzeich": row[14],
+                        "namenr": row[15],
+                        "art_dtsch": row[9],
+                        "art_bot": row[10],
+                        "gattungdeutsch": "",
+                        "gattung": "",
+                        "strname": row[12],
+                        "hausnr": "",
+                        "pflanzjahr": int(row[7]) if (row[7]) else None,
+                        "standalter": int(row[8]) if (row[8]) else None,
+                        "stammumfg": locale.atof(row[5]) if (row[5]) else None,
+                        "baumhoehe": locale.atof(row[2]) if (row[2]) else None,
+                        "bezirk": row[13],
+                        "eigentuemer": "",
+                        "zusatz": "",
+                        "kronedurch": locale.atof(row[6]) if (row[6]) else None,
+                    }
                 }
-            }
-            geojson["features"].append(feature)
+                geojson["features"].append(feature)
 
         line = line + 1
 
