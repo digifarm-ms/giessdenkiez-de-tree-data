@@ -107,5 +107,5 @@ with open(FILENAME + '.csv',  encoding='latin-1') as csvinput:
 
 OUTFILE = FILENAME + '.geojson'
 LOGGER.info("Writing Geojson file '%s' ", OUTFILE)
-with open(OUTFILE, mode='w') as json_file:
+with open(OUTFILE, mode='w', encoding='utf-8') as json_file:
     json.dump(geojson, json_file, indent=2)
