@@ -8,8 +8,7 @@ database:
 year: 23
 
 new-data-paths:
-  - data_files/s_wfs_baumbestand_2023-5-4.geojson
-  - data_files/s_wfs_baumbestand_an_2023-5-4.geojson
+  - tree_data/data_files/baumkataster_muenster.geojson
 
 data-schema:
   mapping:
@@ -33,5 +32,3 @@ data-schema:
     - gattungdeutsch
     - gattung
     - pflanzjahr
-
-
