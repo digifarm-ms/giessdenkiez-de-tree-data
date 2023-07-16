@@ -46,7 +46,7 @@ def transform_new_tree_data(new_trees, attribute_list, schema_mapping_dict):
     """
     
     # if keeping the geometry column, transform data to the crs of our old tree dataset
-    new_trees['geometry'] = new_trees['geometry'].set_crs("EPSG:25833", allow_override=True)
+    new_trees['geometry'] = new_trees['geometry'].set_crs("EPSG:25832", allow_override=True)
     new_trees['geometry'] = new_trees['geometry'].to_crs("EPSG:4326")
 
     # rename columns based on the columns of the old data
